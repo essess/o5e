@@ -1,0 +1,48 @@
+/**
+ * Freescale TRK-MPC5634M Rev.B
+ * GLOBAL Target Configuration Options
+ */
+
+#define XTAL_HZ     (8000000)
+#define SYSCLK_HZ   (80000000)
+
+/**
+ * leds available for this hw platform:
+ */
+enum
+{
+  LED_0 = 0,
+  LED_1 = 1,
+  LED_2 = 2,
+  LED_3 = 3
+};
+
+/**
+ * serial port buffer size (dual use / half-duplex)
+ * must be able to hold a whole page
+ */
+#define SERBUFF_BYTESIZE ((4*1024)+16)
+
+/**
+ * indicates load -> dim == low load. use a scope to gauge latencies.
+ * ideally, all on periods should be high in frequency, but low in duration
+ * this is directly linked to mainloop iteration frequency - you can get a
+ * very good idea of how fast the scheduler runs and approximate isr/task
+ * duration.
+ */
+#define LED_CPU_BUSY (LED_0)
+
+/**
+ * led where visible error codes get 'chirped out'
+ */
+#define LED_ERR (LED_1)
+
+/**
+ * used to indicate if flash is performing a write or erase cycle
+ */
+#define LED_FLASH_BUSY (LED_2)
+
+/**
+ * led for debug use - could be mean anything
+ */
+#define LED_DBG (LED_3)

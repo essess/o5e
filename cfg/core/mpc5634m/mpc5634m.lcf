@@ -1,0 +1,60 @@
+/**
+ * Freescale MPC5634M
+ * Target Linker Script
+ */
+
+MEMORY
+{
+    flash: org=0x00000000, len=0x180000           /**< 1.5M  */
+    cal:   org=0x40000000, len=0x010000           /**< 64k   */
+    ram:   org=0x40010000, len=0x007800           /**< 30k   */
+}
+
+_heap_size = 0;                      /**< malloc/free unused */
+
+SECTIONS
+{
+    GROUP : {
+        /* bank0 (512k) is calibration storage */
+        .rchw      : { KEEP(*(.rchw)) }
+        . = ADDR(flash) + 0x80000;
+
+        /* bank1 (1024k) is application storage */
+        .handlers  : {}
+        .init      : {}
+        .text      : {}
+        .rodata    : {}
+        .ctors     : {}
+        .dtors     : {}
+        extab      : {}
+        extabindex : {}
+    } > flash
+
+    GROUP : {
+        _internal_ram_start = .;
+        _cal_ram_start = _internal_ram_start;
+        /* calibration load area */
+    } > cal
+
+    GROUP : {
+        _cal_ram_end = .;
+        _cal_ram_bytesize = _cal_ram_end - _cal_ram_start;
+        .vectors : {}
+        .ramfunc : {}
+        .sdata   : {}
+        .sbss    : {}
+        .sdata2  : {}
+        .sbss2   : {}
+        .data    : {}
+        .bss     : {}
+        _heap_addr = ALIGN(4);
+        . += _heap_size;
+        _stack_end = ALIGN(16);     /**< the rest is stack */
+        _heap_end = .;
+        _stack_addr = ADDR(cal) + SIZEOF(cal) + SIZEOF(ram);
+        _stack_size = _stack_addr - _stack_end;
+        _internal_ram_end = _stack_addr;
+    } > ram
+}
+
+/* TODO: a minimum stack size assertion */

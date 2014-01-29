@@ -1,0 +1,27 @@
+This dir handles all platform specific combinations (core/hw). Think of this
+as a typical board support package provided by devkit manufacturers.
+
+Everything core specific will fit into the ./core dir
+Everything hardware specific will fit into the ./hw dir
+Everything common that exercises particular core/hw combinations reside in the
+top level ./platform dir
+
+Notice, it's possible that multiple hardware configurations can leverage a
+singular core configuration which is why I broke it down the way I did.
+
+how do you add another platform and/or add another runtime?:
+        cstart.c/.h = the c runtime startup point
+        cppstart.cpp/.h = the cpp runtime start point
+        asmstart.s/.inc = the pure asm runtime start point
+
+from one of the above start points your job (for each platform) is to code:
+        core_init
+        hw_init
+        rt_init  (crt_init for c runtime, cpprt_init for cpp)
+        hw_init_final
+        core_init_final
+
+Right now only cstart is implemented and there are no plans for alternate
+runtimes yet. C is the dominant language decided for this project.
+
+sean <sstasiak@gmail.com>
