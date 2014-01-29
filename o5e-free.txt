@@ -1,0 +1,63 @@
+TODO:
+-add a reboot command to the parser
+- turns out that it's impossible to creat any tasks after os has started, therefore, pull all
+  the static guard vars to prevent double+ creation.
+-the err api really should be part of the core .. which I should be calling the hal I think
+ so go ahead and put init/put the err into the core sooner than later. when I do that, I need
+ to add a 'peek' function so that a monitoring task can be not so intertwined .. don't really
+ need it to be as complicated as it is .. the task should just peek @4hz or so and be done
+ with it .. good enough.
+-look at code todo's
+
+main driving features:
+
+tunerstudio is tuner
+standard msqrt serial comms is primary tuner comms channel
+cocoos is the rtos
+no bootloader (may have osjtag on board)
+use lodur for fw updates if no osjtag on board
+
+feature questions:
+
+does my car have to be off for table/cal updates ?
+        ->no
+will it stumble (if allowed to run while update) ?
+        ->not allowed under any condition
+when we do a burn, the telemetry data is essentially on hold. Is that ok ?
+        -> yes
+will we have a computer controlled shutdown option ?
+        ->no
+if no calibration exists in flash, what is the desired behavior ?
+        -> pin states STAY at their default reset state (probably
+           dictated by the WKPCFG pin)
+        -> no I/O is ever touched until a valid cal gets loaded - this
+           means that the only task to probably run is the tuner task
+           so that we can get a cal in .. do a hard reset afterwords.
+calibration password protection ?
+        -> nope, not even pro
+
+sean notes:
+-to meet the no stumble/running feature above, 64k is going to be paged up into RAM
+ and part of bank0 (two 64k blocks) are going to be the backing store:
+        blk4 64k 0x20000
+        blk5 64k 0x30000
+ code lives in bank1 which allows up to continue fetching table data from ram while
+ updating flash in bank0 all at the same time - preventing stumble because of halted code
+-technically, you should be able to update flash while running at 20k with no problems.
+-the LAST 16bytes of cal space are for application (called 'resv' in the code)
+-consider limiting ivor levels to topmost 4 to help reduce worst case stack needs
+-no more 'efihal' like behavior - target is trk/5634 until it changes, then shim in
+ abstractions as needed at that point. keep it clean, but don't be an architecture
+ astronaut -> make things easier, not layer upon layer
+-serial is polled for now. cocoos has no way to post msgs or sem's from an isr .. until
+ that happens I have to invent my own threadsafe mechanisms that can use an event (the
+ only isr safe construct) or accept the fact that I'm going to have to do a lot of
+ polling and queueing from now on (cocoos was just updated with a couple of things
+ to fix this - I'll revisit at some point).
+-I think burn should be done in a separate thread and tripped by an event .. that way
+ autotune algs AND/OR tuner can trip a 'commit' -- for now, just do it tuner thread only
+-consider making idlecnt in the tuner task an up/down counter instead of resetting it to 0
+-turns out that the tpu has an idle counter - do a task to monitor it so we can get a handle
+ on utilization
+-shooting to have spark/fuel scheduling synhronous to crank. probably 'tripped' by
+ a MAP sample which is also synchronous to a designated crank angle

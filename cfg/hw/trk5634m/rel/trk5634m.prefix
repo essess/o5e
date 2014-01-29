@@ -1,0 +1,5 @@
+/**
+ * Freescale TRK-MPC5634M Rev.B
+ * RELEASE Target Configuration Options
+ */
+#define NDEBUG         /**< turn off traps and asserts */

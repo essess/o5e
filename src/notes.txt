@@ -1,0 +1,83 @@
+cocoos is NOT configured to round robin, this means you need to
+use priorities and code as such (no random time yielding, use
+proper synchronizing methods instead)
+
+cocoos priorities - highest (1) to lowest (254) [TASKPRI_xxxxx]
+N_TASKS 8
+1
+...
+30  task_engpos.c/.h: task_engpos()
+...
+40  task_ana.c/.h: task_ana(), task_ana_test.c: task_ana_test()
+...
+240 task_tuner.c/.h: task_tuner()
+...
+245 task_toothgen.c/.h: task_toothgen()
+...
+250 task_err.c/.h: task_err()
+...
+254
+255 NO_TID
+
+cocoos queue assignments:
+N_QUEUES 0
+none
+
+cocoos semaphore assignments:
+N_SEMAPHORES 1
+task_ana()
+
+cocoos event assignments:
+N_EVENTS 0
+
+ee - ivor4, ivor10
+ce -
+de - unused
+me - unused
+
+hardware ivor4(INTC) priorities - highest (15) to lowest (1)
+15
+14
+13 etpu
+12
+11
+10
+9
+8
+7
+6   dma rfifo5 (ch11) ana_start()
+5
+4
+3
+2   dma error edma_init()
+1   serial    serial_get()
+0   xxxxxxxxxxxxxxxxxxxxxx
+
+dma config:
+group round-robin, channel fixed
+group 1 pri:
+15                  highest
+...
+11  RDRF5
+10  CFFF5
+...
+0                   lowest
+group 0 pri:
+15                  highest
+...
+3   SCIA RDRF (todo)
+2   SCIA TDRE (todo)
+...
+0                   lowest
+
+tpu config:
+tcr1 = 10mhz @ 80mhz sysclk (~1.6s rollrate)
+tcr2 = angle clock
+tpua is stac bus master and drives tcr1/tcr2
+
+pit_rti config:
+rti = 50 to 1000Hz and is ETRIG source for eQADC
+pit0 - unused so far
+pit1 - unused so far
+pit2 - unused so far
+pit3 - unused so far
