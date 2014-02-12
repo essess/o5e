@@ -188,7 +188,6 @@ enum
 };
 
 /**
-/**
  * @public
  * @brief use the following as a logging assert mechanism
  *        without the side effect of locking up the core
