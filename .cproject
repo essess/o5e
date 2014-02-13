@@ -26,7 +26,7 @@
 						<toolChain errorParsers="" id="com.freescale.ppc.debug.toolchain.toolchain.668110952" name="PowerPC Debug Toolchain" superClass="com.freescale.ppc.debug.toolchain.toolchain">
 							<option id="com.freescale.ppc.debug.toolchain.sharedoption.dwarf.1259644987" name="Generate DWARF Information" superClass="com.freescale.ppc.debug.toolchain.sharedoption.dwarf" value="com.freescale.ppc.toolchain.sharedoption.dwarf.2" valueType="enumerated"/>
 							<option id="com.freescale.ppc.toolchain.sharedoption.processor.1879519677" name="Processor" superClass="com.freescale.ppc.toolchain.sharedoption.processor" value="com.freescale.ppc.toolchain.sharedoption.processor.zen" valueType="enumerated"/>
-							<option id="com.freescale.ppc.toolchain.sharedoption.fpu.12299751" name="Floating Point" superClass="com.freescale.ppc.toolchain.sharedoption.fpu" value="com.freescale.ppc.toolchain.sharedoption.fpu.none" valueType="enumerated"/>
+							<option id="com.freescale.ppc.toolchain.sharedoption.fpu.12299751" name="Floating Point" superClass="com.freescale.ppc.toolchain.sharedoption.fpu" value="com.freescale.ppc.toolchain.sharedoption.fpu.spfp_only" valueType="enumerated"/>
 							<option id="com.freescale.ppc.toolchain.sharedoption.sym.1358477463" name="Store Full Paths To Source Files" superClass="com.freescale.ppc.toolchain.sharedoption.sym" value="true" valueType="boolean"/>
 							<option id="com.freescale.ppc.toolchain.sharedoption.vle.1884720333" name="Compress for PowerPC VLE (Zen)" superClass="com.freescale.ppc.toolchain.sharedoption.vle" value="false" valueType="boolean"/>
 							<option id="com.freescale.ppc.toolchain.sharedoption.maxerrors.1976737332" name="Maximum Number of Errors" superClass="com.freescale.ppc.toolchain.sharedoption.maxerrors" value="10" valueType="string"/>
@@ -39,10 +39,15 @@
 								<option id="com.freescale.ppc.toolchain.linker.base.input.dataAddress.260193170" name="Data Address" superClass="com.freescale.ppc.toolchain.linker.base.input.dataAddress" value="0x0" valueType="string"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.input.smallDataAddress.979975201" name="Small Data Address" superClass="com.freescale.ppc.toolchain.linker.base.input.smallDataAddress" value="0x0" valueType="string"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.input.smallData2Address.754918191" name="Small Data 2 Address" superClass="com.freescale.ppc.toolchain.linker.base.input.smallData2Address" value="0x0" valueType="string"/>
-								<option id="com.freescale.ppc.toolchain.linker.base.input.lpath.41502853" name="Library Search Paths" superClass="com.freescale.ppc.toolchain.linker.base.input.lpath"/>
+								<option id="com.freescale.ppc.toolchain.linker.base.input.lpath.41502853" name="Library Search Paths" superClass="com.freescale.ppc.toolchain.linker.base.input.lpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}/PA_Support/ewl/lib&quot;"/>
+								</option>
 								<option id="com.freescale.ppc.toolchain.linker.base.general.otherflags.117189134" name="Other Flags" superClass="com.freescale.ppc.toolchain.linker.base.general.otherflags" value="-char unsigned" valueType="string"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.output.stackAddress.1567520026" name="Stack Address" superClass="com.freescale.ppc.toolchain.linker.base.output.stackAddress" value="" valueType="string"/>
-								<option id="com.freescale.ppc.toolchain.linker.base.input.lfile.180642078" name="Library Files" superClass="com.freescale.ppc.toolchain.linker.base.input.lfile"/>
+								<option id="com.freescale.ppc.toolchain.linker.base.input.lfile.180642078" name="Library Files" superClass="com.freescale.ppc.toolchain.linker.base.input.lfile" valueType="libs">
+									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}/PA_Support/ewl/lib/librt_E200z650_SPFP_Only.a&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}/PA_Support/ewl/lib/libc_E200z650_SPFP_Only.a&quot;"/>
+								</option>
 								<option id="com.freescale.ppc.toolchain.linker.base.input.lcf_file.841366602" name="Link Command File (.lcf)" superClass="com.freescale.ppc.toolchain.linker.base.input.lcf_file" value="${ProjDirPath}\cfg\core\mpc5634m\mpc5634m.lcf" valueType="string"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.output.genROMimage.143466678" name="Generate ROM Image" superClass="com.freescale.ppc.toolchain.linker.base.output.genROMimage" value="true" valueType="boolean"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.output.romAddress.3200549" name="ROM Image Address" superClass="com.freescale.ppc.toolchain.linker.base.output.romAddress" value="0x00000000" valueType="string"/>
@@ -60,12 +65,8 @@
 									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_init_final.c"/>
 									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_reset.c"/>
 									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_tick_reg.c"/>
-									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_tick_start.c"/>
-									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_begin.c"/>
-									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_end.c"/>
 									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_erase.c"/>
 									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_get.c"/>
-									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_getblkptr.c"/>
 									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_swap.c"/>
 									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_write.c"/>
 									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ivor10_handler.c"/>
@@ -83,8 +84,87 @@
 									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/led/led_off.c"/>
 									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/led/led_on.c"/>
 									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/led/led_set.c"/>
-									<listOptionValue builtIn="false" value="src/task/led/task_led.c"/>
-									<listOptionValue builtIn="false" value="src/task/ts/task_ts.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_destroy.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_get_code.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_get_ts.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_init.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_peek.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_pop.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_push.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ana/ana_errhnd.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ana/ana_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ana/ana_prv.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ana/ana_start.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ana/ana_vechnd.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_commit.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_commit_chk.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_getblk_bytesize.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_getblk_ptr.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_prv.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_start_timers.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_timebase.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/edma/edma_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/edma/edma_reg_errhnd.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/edma/edma_vechnd.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_app_eng_pos_mcam.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_fpm.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_fuel.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_ic.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_oc.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_ppa.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_pwm.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_qom.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_sm.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_spark.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_spwm.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_test.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_toothgen.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_uart_fc.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_util.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_busy_chk.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_erase_begin.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_erase_end.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_getblk_bytesize.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_getblk_ptr.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_write_begin.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_write_end.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_get.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_recv.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_recv_begin.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_recv_end.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_send.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_send_begin.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_send_end.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_vechnd.c"/>
+									<listOptionValue builtIn="false" value="src/task/ana/task_ana.c"/>
+									<listOptionValue builtIn="false" value="src/task/ana/task_ana_create.c"/>
+									<listOptionValue builtIn="false" value="src/task/ana/task_ana_test.c"/>
+									<listOptionValue builtIn="false" value="src/task/engpos/task_engpos.c"/>
+									<listOptionValue builtIn="false" value="src/task/engpos/task_engpos_create.c"/>
+									<listOptionValue builtIn="false" value="src/task/err/task_err.c"/>
+									<listOptionValue builtIn="false" value="src/task/err/task_err_create.c"/>
+									<listOptionValue builtIn="false" value="src/task/toothgen/task_toothgen_create.c"/>
+									<listOptionValue builtIn="false" value="src/task/toothgen/task_toothgen_cycle.c"/>
+									<listOptionValue builtIn="false" value="src/task/toothgen/task_toothgen_fixed.c"/>
+									<listOptionValue builtIn="false" value="src/task/toothgen/task_toothgen_jitter.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_A.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_Q.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_S.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_k.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_p.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_r.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_unh.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_w.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/task_tuner.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/task_tuner_create.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/task_tuner_prv.c"/>
+									<listOptionValue builtIn="false" value="src/util/cpy.c"/>
+									<listOptionValue builtIn="false" value="src/util/crc32.c"/>
+									<listOptionValue builtIn="false" value="src/util/fifo.c"/>
+									<listOptionValue builtIn="false" value="src/util/fill.c"/>
+									<listOptionValue builtIn="false" value="src/util/lifo.c"/>
 								</option>
 								<option id="com.freescale.ppc.toolchain.linker.base.general.codeMerging.1680454373" name="Code Merging" superClass="com.freescale.ppc.toolchain.linker.base.general.codeMerging" value="com.freescale.ppc.toolchain.linker.base.general.codeMerging.off" valueType="enumerated"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.general.aggressiveMerging.1549748514" name="Aggressive Merging" superClass="com.freescale.ppc.toolchain.linker.base.general.aggressiveMerging" value="false" valueType="boolean"/>
@@ -111,10 +191,12 @@
 								<option id="com.freescale.ppc.toolchain.compiler.base.general.unsignedchar.1390772809" name="Use Unsigned Chars" superClass="com.freescale.ppc.toolchain.compiler.base.general.unsignedchar" value="true" valueType="boolean"/>
 								<option id="com.freescale.ppc.toolchain.compiler.base.input.include.system.2046640647" name="System Path (-I- -I)" superClass="com.freescale.ppc.toolchain.compiler.base.input.include.system" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}/PA_Support/ewl/EWL_C/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}/PA_Support/ewl/EWL_Runtime/Runtime_PA/Include&quot;"/>
 								</option>
 								<option id="com.freescale.ppc.toolchain.compiler.base.general.cpp.exceptions.1124431440" name="Enable C++ Exceptions" superClass="com.freescale.ppc.toolchain.compiler.base.general.cpp.exceptions" value="false" valueType="boolean"/>
 								<option id="com.freescale.ppc.toolchain.compiler.base.general.otherflags.bool.574238494" name="Enable C++ 'bool' type, 'true' and 'false' Constants" superClass="com.freescale.ppc.toolchain.compiler.base.general.otherflags.bool" value="false" valueType="boolean"/>
 								<option id="com.freescale.ppc.toolchain.compiler.base.preprocessor.include.prefixfile.330162917" name="Prefix Files" superClass="com.freescale.ppc.toolchain.compiler.base.preprocessor.include.prefixfile" valueType="symbolFiles">
+									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}\PA_Support\ewl\EWL_C\include\lib_ewl.prefix&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}\cfg\hw\trk5634m\trk5634m.prefix"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}\cfg\hw\trk5634m\dbg\trk5634m.prefix&quot;"/>
 								</option>
@@ -221,7 +303,7 @@
 						<toolChain errorParsers="" id="com.freescale.ppc.debug.toolchain.toolchain.1427860111" name="PowerPC Debug Toolchain" superClass="com.freescale.ppc.debug.toolchain.toolchain">
 							<option id="com.freescale.ppc.debug.toolchain.sharedoption.dwarf.1181455362" name="Generate DWARF Information" superClass="com.freescale.ppc.debug.toolchain.sharedoption.dwarf" value="com.freescale.ppc.toolchain.sharedoption.dwarf.2" valueType="enumerated"/>
 							<option id="com.freescale.ppc.toolchain.sharedoption.processor.1479864117" name="Processor" superClass="com.freescale.ppc.toolchain.sharedoption.processor" value="com.freescale.ppc.toolchain.sharedoption.processor.zen" valueType="enumerated"/>
-							<option id="com.freescale.ppc.toolchain.sharedoption.fpu.1296523005" name="Floating Point" superClass="com.freescale.ppc.toolchain.sharedoption.fpu" value="com.freescale.ppc.toolchain.sharedoption.fpu.none" valueType="enumerated"/>
+							<option id="com.freescale.ppc.toolchain.sharedoption.fpu.1296523005" name="Floating Point" superClass="com.freescale.ppc.toolchain.sharedoption.fpu" value="com.freescale.ppc.toolchain.sharedoption.fpu.spfp_only" valueType="enumerated"/>
 							<option id="com.freescale.ppc.toolchain.sharedoption.sym.2060617843" name="Store Full Paths To Source Files" superClass="com.freescale.ppc.toolchain.sharedoption.sym" value="true" valueType="boolean"/>
 							<option id="com.freescale.ppc.toolchain.sharedoption.vle.832755643" name="Compress for PowerPC VLE (Zen)" superClass="com.freescale.ppc.toolchain.sharedoption.vle" value="false" valueType="boolean"/>
 							<option id="com.freescale.ppc.toolchain.sharedoption.maxerrors.1505025911" name="Maximum Number of Errors" superClass="com.freescale.ppc.toolchain.sharedoption.maxerrors" value="10" valueType="string"/>
@@ -234,25 +316,132 @@
 								<option id="com.freescale.ppc.toolchain.linker.base.input.dataAddress.1376613646" name="Data Address" superClass="com.freescale.ppc.toolchain.linker.base.input.dataAddress" value="0x0" valueType="string"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.input.smallDataAddress.344928698" name="Small Data Address" superClass="com.freescale.ppc.toolchain.linker.base.input.smallDataAddress" value="0x0" valueType="string"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.input.smallData2Address.1782507081" name="Small Data 2 Address" superClass="com.freescale.ppc.toolchain.linker.base.input.smallData2Address" value="0x0" valueType="string"/>
-								<option id="com.freescale.ppc.toolchain.linker.base.input.lpath.1796047728" name="Library Search Paths" superClass="com.freescale.ppc.toolchain.linker.base.input.lpath"/>
+								<option id="com.freescale.ppc.toolchain.linker.base.input.lpath.1796047728" name="Library Search Paths" superClass="com.freescale.ppc.toolchain.linker.base.input.lpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}/PA_Support/ewl/lib&quot;"/>
+								</option>
 								<option id="com.freescale.ppc.toolchain.linker.base.general.otherflags.776916196" name="Other Flags" superClass="com.freescale.ppc.toolchain.linker.base.general.otherflags" value="-char unsigned" valueType="string"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.output.stackAddress.1552180064" name="Stack Address" superClass="com.freescale.ppc.toolchain.linker.base.output.stackAddress" value="" valueType="string"/>
-								<option id="com.freescale.ppc.toolchain.linker.base.input.lfile.1166839596" name="Library Files" superClass="com.freescale.ppc.toolchain.linker.base.input.lfile"/>
+								<option id="com.freescale.ppc.toolchain.linker.base.input.lfile.1166839596" name="Library Files" superClass="com.freescale.ppc.toolchain.linker.base.input.lfile" valueType="libs">
+									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}/PA_Support/ewl/lib/librt_E200z650_SPFP_Only.a&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}/PA_Support/ewl/lib/libc_E200z650_SPFP_Only.a&quot;"/>
+								</option>
 								<option id="com.freescale.ppc.toolchain.linker.base.input.lcf_file.1446038622" name="Link Command File (.lcf)" superClass="com.freescale.ppc.toolchain.linker.base.input.lcf_file" value="${ProjDirPath}\cfg\core\mpc5634m\mpc5634m.lcf" valueType="string"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.output.genROMimage.1133158002" name="Generate ROM Image" superClass="com.freescale.ppc.toolchain.linker.base.output.genROMimage" value="true" valueType="boolean"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.output.romAddress.1840753337" name="ROM Image Address" superClass="com.freescale.ppc.toolchain.linker.base.output.romAddress" value="0x00000000" valueType="string"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.output.ramAddress.1303143061" name="RAM Buffer Address of ROM Image" superClass="com.freescale.ppc.toolchain.linker.base.output.ramAddress" value="0x00000000" valueType="string"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.input.linkorder.2091255393" name="Link Order" superClass="com.freescale.ppc.toolchain.linker.base.input.linkorder" valueType="stringList">
 									<listOptionValue builtIn="false" value="src/main.c"/>
-									<listOptionValue builtIn="false" value="src/Exceptions.c"/>
-									<listOptionValue builtIn="false" value="src/IntcInterrupts.c"/>
-									<listOptionValue builtIn="false" value="src/MPC5634M_HWInit.c"/>
-									<listOptionValue builtIn="false" value="src/MPC5634M_Startup.c"/>
-									<listOptionValue builtIn="false" value="src/MPC5634M_init_flash.c"/>
-									<listOptionValue builtIn="false" value="src/__ppc_eabi_init.c"/>
-									<listOptionValue builtIn="false" value="src/__start.c"/>
-									<listOptionValue builtIn="false" value="src/ivor_branch_table.c"/>
-									<listOptionValue builtIn="false" value="src/__mem.c"/>
+									<listOptionValue builtIn="false" value="src/os/os_assert.c"/>
+									<listOptionValue builtIn="false" value="src/os/os_cbk.c"/>
+									<listOptionValue builtIn="false" value="src/os/os_event.c"/>
+									<listOptionValue builtIn="false" value="src/os/os_kernel.c"/>
+									<listOptionValue builtIn="false" value="src/os/os_msgqueue.c"/>
+									<listOptionValue builtIn="false" value="src/os/os_sem.c"/>
+									<listOptionValue builtIn="false" value="src/os/os_task.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_init_final.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_reset.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_tick_reg.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_erase.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_get.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_swap.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_write.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ivor10_handler.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ivor4_handler.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/rchw.s"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/vector_table.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/weak_handlers.s"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/weak_ivor_handlers.c"/>
+									<listOptionValue builtIn="false" value="src/platform/crt_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/cstart.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/hw_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/hw_init_final.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/led/led_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/led/led_invert.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/led/led_off.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/led/led_on.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/led/led_set.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_destroy.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_get_code.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_get_ts.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_init.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_peek.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_pop.c"/>
+									<listOptionValue builtIn="false" value="src/err/err_push.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ana/ana_errhnd.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ana/ana_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ana/ana_prv.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ana/ana_start.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/ana/ana_vechnd.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_commit.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_commit_chk.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_getblk_bytesize.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_getblk_ptr.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/cal/cal_prv.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_start_timers.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/core_timebase.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/edma/edma_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/edma/edma_reg_errhnd.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/edma/edma_vechnd.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_app_eng_pos_mcam.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_fpm.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_fuel.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_ic.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_init.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_oc.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_ppa.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_pwm.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_qom.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_sm.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_spark.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_spwm.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_test.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_toothgen.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_uart_fc.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/etpu/etpu_util.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_busy_chk.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_erase_begin.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_erase_end.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_getblk_bytesize.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_getblk_ptr.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_write_begin.c"/>
+									<listOptionValue builtIn="false" value="src/platform/core/mpc5634m/flash/flash_write_end.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_get.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_recv.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_recv_begin.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_recv_end.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_send.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_send_begin.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_send_end.c"/>
+									<listOptionValue builtIn="false" value="src/platform/hw/trk5634m/serial/serial_vechnd.c"/>
+									<listOptionValue builtIn="false" value="src/task/ana/task_ana.c"/>
+									<listOptionValue builtIn="false" value="src/task/ana/task_ana_create.c"/>
+									<listOptionValue builtIn="false" value="src/task/ana/task_ana_test.c"/>
+									<listOptionValue builtIn="false" value="src/task/engpos/task_engpos.c"/>
+									<listOptionValue builtIn="false" value="src/task/engpos/task_engpos_create.c"/>
+									<listOptionValue builtIn="false" value="src/task/err/task_err.c"/>
+									<listOptionValue builtIn="false" value="src/task/err/task_err_create.c"/>
+									<listOptionValue builtIn="false" value="src/task/toothgen/task_toothgen_create.c"/>
+									<listOptionValue builtIn="false" value="src/task/toothgen/task_toothgen_cycle.c"/>
+									<listOptionValue builtIn="false" value="src/task/toothgen/task_toothgen_fixed.c"/>
+									<listOptionValue builtIn="false" value="src/task/toothgen/task_toothgen_jitter.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_A.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_Q.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_S.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_k.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_p.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_r.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_unh.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/process_w.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/task_tuner.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/task_tuner_create.c"/>
+									<listOptionValue builtIn="false" value="src/task/tuner/task_tuner_prv.c"/>
+									<listOptionValue builtIn="false" value="src/util/cpy.c"/>
+									<listOptionValue builtIn="false" value="src/util/crc32.c"/>
+									<listOptionValue builtIn="false" value="src/util/fifo.c"/>
+									<listOptionValue builtIn="false" value="src/util/fill.c"/>
+									<listOptionValue builtIn="false" value="src/util/lifo.c"/>
 								</option>
 								<option id="com.freescale.ppc.toolchain.linker.base.general.codeMerging.1743566644" name="Code Merging" superClass="com.freescale.ppc.toolchain.linker.base.general.codeMerging" value="com.freescale.ppc.toolchain.linker.base.general.codeMerging.safe" valueType="enumerated"/>
 								<option id="com.freescale.ppc.toolchain.linker.base.general.aggressiveMerging.679695660" name="Aggressive Merging" superClass="com.freescale.ppc.toolchain.linker.base.general.aggressiveMerging" value="false" valueType="boolean"/>
@@ -278,12 +467,14 @@
 								<option id="com.freescale.ppc.toolchain.compiler.base.general.unsignedchar.738011166" name="Use Unsigned Chars" superClass="com.freescale.ppc.toolchain.compiler.base.general.unsignedchar" value="true" valueType="boolean"/>
 								<option id="com.freescale.ppc.toolchain.compiler.base.input.include.system.1020317642" name="System Path (-I- -I)" superClass="com.freescale.ppc.toolchain.compiler.base.input.include.system" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}/PA_Support/ewl/EWL_C/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}/PA_Support/ewl/EWL_Runtime/Runtime_PA/Include&quot;"/>
 								</option>
 								<option id="com.freescale.ppc.toolchain.compiler.base.general.cpp.exceptions.1341536126" name="Enable C++ Exceptions" superClass="com.freescale.ppc.toolchain.compiler.base.general.cpp.exceptions" value="false" valueType="boolean"/>
 								<option id="com.freescale.ppc.toolchain.compiler.base.general.otherflags.bool.1469166598" name="Enable C++ 'bool' type, 'true' and 'false' Constants" superClass="com.freescale.ppc.toolchain.compiler.base.general.otherflags.bool" value="false" valueType="boolean"/>
 								<option id="com.freescale.ppc.toolchain.compiler.base.preprocessor.include.prefixfile.494121216" name="Prefix Files" superClass="com.freescale.ppc.toolchain.compiler.base.preprocessor.include.prefixfile" valueType="symbolFiles">
+									<listOptionValue builtIn="false" value="&quot;${PAToolsBaseDir}\PA_Support\ewl\EWL_C\include\lib_ewl.prefix&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}\cfg\hw\trk5634m\trk5634m.prefix"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}\cfg\hw\trk5634m\rel\trk5634m.prefix&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}\cfg\hw\trk5634m\dbg\trk5634m.prefix&quot;"/>
 								</option>
 								<option id="com.freescale.ppc.toolchain.compiler.base.warnings.asErrors.71018765" name="Treat All Warnings As Errors" superClass="com.freescale.ppc.toolchain.compiler.base.warnings.asErrors" value="true" valueType="boolean"/>
 								<option id="com.freescale.ppc.toolchain.compiler.base.warnings.extended.1769953728" name="Extended Error Checking" superClass="com.freescale.ppc.toolchain.compiler.base.warnings.extended" value="true" valueType="boolean"/>

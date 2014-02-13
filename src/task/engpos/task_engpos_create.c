@@ -30,7 +30,7 @@
 void
   task_engpos_create( void )
 {
-#if 0
+
   if( FS_ETPU_ERROR_NONE !=
     fs_etpu_app_eng_pos_mcam_init(
       1,                            /**< mcam channel */
@@ -61,7 +61,7 @@ void
     err_push( CODE_ENGPOS_EPMINIT );
     return;
   }
-#endif
+
   if( task_create( task_engpos, TASKPRI_ENGPOS, 0, 0, 0 ) == NO_TID )
     err_push( CODE_ENGPOS_CREATE );
 }
