@@ -30,28 +30,28 @@
 void
   task_engpos_create( void )
 {
-
+  // todo: pull cfg from newly created items in cal
   if( FS_ETPU_ERROR_NONE !=
     fs_etpu_app_eng_pos_mcam_init(
       1,                            /**< mcam channel */
       FS_ETPU_MCAM_PRIORITY_LOW,    /**< mcam pri */
-      FS_ETPU_MCAM_FM0_RISING_EDGE, /**< mcam edge polarity */      // todo:cfg
-      48000,                        /**< cam start angle *100 */    // todo:cfg
-      9000,                         /**< cam window width *100 */   // todo:cfg
+      FS_ETPU_MCAM_FM0_RISING_EDGE, /**< mcam edge polarity */
+      48000,                        /**< cam start angle *100 */
+      9000,                         /**< cam window width *100 */
       0,                            /**< crank channel */
       FS_ETPU_CRANK_PRIORITY_HIGH,  /**< crank pri */
-      FS_ETPU_CRANK_FM0_RISING_EDGE,/**< crank edge polarity */     // todo:cfg
-      35,                           /**< crank teeth */             // todo:cfg
-      1,                            /**< crank missing teeth */     // todo:cfg
-      4,                            /**< tooth blanking cnt */      // todo:cfg
-      100,                          /**< tick p/tooth */            // todo:cfg?
+      FS_ETPU_CRANK_FM0_RISING_EDGE,/**< crank edge polarity */
+      35,                           /**< crank teeth */
+      1,                            /**< crank missing teeth */
+      4,                            /**< tooth blanking cnt */
+      1024,                         /**< tick p/tooth */            // todo: not sure what to do
       0xffffff/2,                   /**< normal windowing ratio */  // todo:cfg (table lookup)
       0xffffff/2,                   /**< after gap windowing ratio */ // todo:cfg (table lookup)
       0xffffff/2,                   /**< across gap windowing ratio */ // todo:cfg (table lookup)
       0xffffff/2,                   /**< timeout windowing ratio */ // todo:cfg (table lookup)
       0xffffff/2,                   /**< gap ratio */               // todo:cfg
-      100,                          /**< blank time: ms */          // todo:cfg
-      400,                          /**< first tooth timeout: us */ // todo:cfg
+      100,                          /**< blank time: ms */
+      400,                          /**< first tooth timeout: us */
       0,                            /**< link 1 */                  // todo:cfg?
       0,                            /**< link 2 */                  // todo:cfg?
       0,                            /**< link 3 */                  // todo:cfg?
