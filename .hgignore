@@ -3,3 +3,4 @@ syntax: glob
 ./.settings
 ReferencedRSESystems.xml
 *.sublime-workspace
+*.launch
