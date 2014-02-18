@@ -32,6 +32,7 @@
 void
   task_engpos_create( calblk_t volatile *pblk )
 {
+  /* pblk has already been validated for us previously */
   if( FS_ETPU_ERROR_NONE !=
     fs_etpu_app_eng_pos_mcam_init(
       1,                            /**< mcam channel */
