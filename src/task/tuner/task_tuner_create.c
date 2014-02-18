@@ -26,12 +26,8 @@
 void
   task_tuner_create( void )
 {
-  static uint8_t tid = NO_TID;
-  if( tid == NO_TID )
-  {
-    tid = task_create( &task_tuner, TASKPRI_TUNER, 0, 0, 0 );
-    err_assert( tid != NO_TID, CODE_TUNER_TCTID );
-  }
+  uint8_t const tid = task_create( &task_tuner, TASKPRI_TUNER, 0, 0, 0 );
+  err_assert( tid != NO_TID, CODE_TUNER_TCTID );
 }
 
 /* --| INTERNAL |--------------------------------------------------------- */
