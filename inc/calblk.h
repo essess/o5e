@@ -37,7 +37,7 @@ typedef struct
     struct
     {
       uint32_t   camstart:16;       // [U16]  /**< @ 0x000c - 12   */
-      uint32_t      width:16;       // [U16]  /**< @ 0x000e - 14   */
+      uint32_t   camwidth:16;       // [U16]  /**< @ 0x000e - 14   */
     } defw;
     struct
     {
@@ -46,9 +46,10 @@ typedef struct
       uint32_t acrossgap;                     /**< @ 0x0018 - 24   */
       uint32_t timeout;                       /**< @ 0x001c - 28   */
     } defwr;
+    uint32_t crank_gap_ratio;                 /**< @ 0x0020 - 32   */
   } cccfg;
 
-  uint8_t skip0[1584];
+  uint8_t skip0[1580];
 
   struct
   {

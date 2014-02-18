@@ -22,40 +22,41 @@
 /* --| INLINES  |--------------------------------------------------------- */
 /* --| PUBLIC   |--------------------------------------------------------- */
 
+#pragma warn_implicitconv off
+
 /**
  * @public
  * @brief create the engine position task
  * @retval none
  */
 void
-  task_engpos_create( void )
+  task_engpos_create( calblk_t volatile *pblk )
 {
-  // todo: pull cfg from newly created items in cal
   if( FS_ETPU_ERROR_NONE !=
     fs_etpu_app_eng_pos_mcam_init(
       1,                            /**< mcam channel */
       FS_ETPU_MCAM_PRIORITY_LOW,    /**< mcam pri */
-      FS_ETPU_MCAM_FM0_RISING_EDGE, /**< mcam edge polarity */
-      48000,                        /**< cam start angle *100 */
-      9000,                         /**< cam window width *100 */
+      pblk->cccfg.cam_edge,         /**< mcam edge polarity */
+      pblk->cccfg.defw.camstart,    /**< cam start angle *100 */
+      pblk->cccfg.defw.camwidth,    /**< cam window width *100 */
       0,                            /**< crank channel */
       FS_ETPU_CRANK_PRIORITY_HIGH,  /**< crank pri */
-      FS_ETPU_CRANK_FM0_RISING_EDGE,/**< crank edge polarity */
-      35,                           /**< crank teeth */
-      1,                            /**< crank missing teeth */
-      4,                            /**< tooth blanking cnt */
+      pblk->cccfg.crank_edge,       /**< crank edge polarity */
+      pblk->cccfg.teeth,            /**< crank teeth */
+      pblk->cccfg.mteeth,           /**< crank missing teeth */
+      pblk->cccfg.blanktcnt,        /**< tooth blanking cnt */
       1024,                         /**< tick p/tooth */            // todo: not sure what to do
-      0xffffff/2,                   /**< normal windowing ratio */  // todo:cfg (table lookup)
-      0xffffff/2,                   /**< after gap windowing ratio */ // todo:cfg (table lookup)
-      0xffffff/2,                   /**< across gap windowing ratio */ // todo:cfg (table lookup)
-      0xffffff/2,                   /**< timeout windowing ratio */ // todo:cfg (table lookup)
-      0xffffff/2,                   /**< gap ratio */               // todo:cfg
-      100,                          /**< blank time: ms */
-      400,                          /**< first tooth timeout: us */
-      0,                            /**< link 1 */                  // todo:cfg?
-      0,                            /**< link 2 */                  // todo:cfg?
-      0,                            /**< link 3 */                  // todo:cfg?
-      0,                            /**< link 4 */                  // todo:cfg?
+      pblk->cccfg.defwr.norm,       /**< normal windowing ratio */
+      pblk->cccfg.defwr.aftergap,   /**< after gap windowing ratio */
+      pblk->cccfg.defwr.acrossgap,  /**< across gap windowing ratio */
+      pblk->cccfg.defwr.timeout,    /**< timeout windowing ratio */
+      pblk->cccfg.crank_gap_ratio,  /**< gap ratio */
+      pblk->cccfg.blankt_ms,        /**< blank time: ms */
+      pblk->cccfg.ftto,             /**< first tooth timeout: us */
+      0,                            /**< link 1 */
+      0,                            /**< link 2 */
+      0,                            /**< link 3 */
+      0,                            /**< link 4 */
       etpu_tcr1_freq()) )
   {
     err_push( CODE_ENGPOS_EPMINIT );

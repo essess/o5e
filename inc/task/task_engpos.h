@@ -11,6 +11,8 @@
 #ifndef   __task_engpos_h
 #define   __task_engpos_h
 
+#include "calblk.h"
+
 #define TASKPRI_ENGPOS (30)
 
 /**
@@ -19,6 +21,6 @@
  * @retval none
  */
 void
-  task_engpos_create( void );
+  task_engpos_create( calblk_t volatile *pblk );
 
 #endif // __task_engpos_h
