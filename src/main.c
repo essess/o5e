@@ -62,7 +62,7 @@ void
       }
       /* these tasks run regardless of test mode: */
       task_ana_create( pblk );
-      task_engpos_create();
+      task_engpos_create( pblk );
     }
     else
       err_push( CODE_MISC_CALBLK );
