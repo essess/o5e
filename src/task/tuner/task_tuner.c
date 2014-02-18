@@ -23,6 +23,9 @@
 
 /* --| TYPES    |--------------------------------------------------------- */
 /* --| STATICS  |--------------------------------------------------------- */
+
+static uint32_t unkcmd = 0;
+
 /* --| INLINES  |--------------------------------------------------------- */
 /* --| PUBLIC   |--------------------------------------------------------- */
 /* --| INTERNAL |--------------------------------------------------------- */
@@ -182,7 +185,14 @@ void
           cnt = process_p( buffer, sizeof(buffer[0]) );
           break;
         default:
-          err_push( CODE_TUNER_TTUNKCMD );
+          /**
+           * CODE_TUNER_TTUNKCMD:
+           * This code is retired, see wiki note #7. Instead, increment
+           * a counter which can be polled (destructively) if you really
+           * need to know this information. For now, it's not worth the
+           * effort.
+           */
+          unkcmd++;
           cnt = 0;
       }
     }
