@@ -92,11 +92,9 @@ void
     err_push( CODE_ETPU_INIT );
 
   /* setup default pins used by tpu: */
+
   /* 31 = toothgen crank out */
   /* 30 = toothgen cam out   */
-  /* 1 = cam in   */
-  /* 0 = crank in */
-
   pcr_t const tg_pcr =
   {
     .pa = 3,  .obe = 1,  .ibe = 1,  .dsc = 0,  .ode = 0,
@@ -104,6 +102,22 @@ void
   };
   SIU.PCR[144].R = tg_pcr.reg;
   SIU.PCR[145].R = tg_pcr.reg;
+
+  /* 0 = crank in */
+  pcr_t const crank_pcr =
+  {
+    .pa = 3,  .obe = 0,  .ibe = 1,  .dsc = 0,  .ode = 0,
+    .hys = 1, .src = 3,  .wpe = 1,  .wps = 0
+  };
+  SIU.PCR[114].R = crank_pcr.reg;
+
+  /* 1 = cam in   */
+  pcr_t const cam_pcr =
+  {
+    .pa = 1,  .obe = 0,  .ibe = 1,  .dsc = 0,  .ode = 0,
+    .hys = 1, .src = 3,  .wpe = 1,  .wps = 0
+  };
+  SIU.PCR[115].R = cam_pcr.reg;
 
 }
 
