@@ -9,8 +9,13 @@
  * use the following: http://creativecommons.org/licenses/by-nc/4.0/legalcode
  */
 
+#include <stdio.h>
 #include "task/tuner/task_tuner_prv.h"
 #include "err.h"
+
+#if __CWCC__
+#pragma warn_implicitconv off
+#endif
 
 /* --| TYPES    |--------------------------------------------------------- */
 /* --| STATICS  |--------------------------------------------------------- */
@@ -40,8 +45,11 @@ uint16_t
     code = err_get_code( pe );
     err_destroy( pe );
   }
-  /* breakdown for easier reporting */
-  *pbuff++ = (uint8_t)GET_MODULE( code );
-  *pbuff   = (uint8_t)GET_CODE( code );
-  return sizeof(uint16_t);
+
+  len = snprintf( (char*)pbuff, SERBUFF_BYTESIZE,
+                  "M[%02i]C[%02i]\r\n",
+                  GET_MODULE( code ),
+                  GET_CODE( code ) );
+
+  return len != -1 ? len : 0;
 }
