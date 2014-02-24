@@ -16,6 +16,7 @@
 #include "etpu.h"
 #include "etpu/etpu_util.h"
 #include "etpu/etpu_app_eng_pos_mcam.h"
+#include "platform/core/mpc5634m/mpc5634m.h"
 
 /* --| TYPES    |--------------------------------------------------------- */
 /* --| STATICS  |--------------------------------------------------------- */
@@ -66,6 +67,12 @@ void
 
   if( task_create( task_engpos, TASKPRI_ENGPOS, 0, 0, 0 ) == NO_TID )
     err_push( CODE_ENGPOS_CREATE );
+
+  ETPU.CHAN[0].CR.B.CIE = 1;        /**< unmask crank hsr      */
+  ETPU.CHAN[1].CR.B.CIE = 1;        /**< unmask cam   hsr      */
+  INTC.PSR[68].B.PRI = 13;          /**< eTPU.eTPUCISR_1[CIS0] */
+  INTC.PSR[69].B.PRI = 13;          /**< eTPU.eTPUCISR_1[CIS1] */
+
 }
 
 /* --| INTERNAL |--------------------------------------------------------- */
