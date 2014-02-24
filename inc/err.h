@@ -157,6 +157,8 @@ enum
 
   CODE_ENGPOS_CREATE        = ENGPOS_CODE(  0 ),
   CODE_ENGPOS_EPMINIT       = ENGPOS_CODE(  1 ),
+  CODE_ENGPOS_CIS0MI        = ENGPOS_CODE(  2 ),
+  CODE_ENGPOS_CIS1MI        = ENGPOS_CODE(  3 ),
 
   CODE_ANA_GETSRC           = ANA_CODE(  0 ),
   CODE_ANA_INITRATE         = ANA_CODE(  1 ),
